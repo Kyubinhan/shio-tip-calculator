@@ -12,11 +12,11 @@ import {
   calculateKitchenTip,
   createArray,
   getEmployeesShareMap,
-  roundToTwo,
+  roundToThree,
 } from 'src/utils';
 
 export default function ThirdGroupFields({ values }) {
-  const kitchenTip = roundToTwo(calculateKitchenTip(values));
+  const kitchenTip = roundToThree(calculateKitchenTip(values));
   const numOfKitchenStaff = Number(values.numOfKitchenStaff) || 0;
   const kitchenStaffShareMap = getEmployeesShareMap(
     values,
@@ -89,7 +89,7 @@ export default function ThirdGroupFields({ values }) {
       </Typography>
       <Grid container spacing={1}>
         {createArray(numOfKitchenStaff).map((_, idx) => {
-          const staffTip = roundToTwo(
+          const staffTip = roundToThree(
             kitchenStaffShareMap[`kitchenStaff#${idx}`]
           );
 

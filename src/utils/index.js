@@ -25,8 +25,8 @@ export const calculateTotalTip = (values) => {
   return cashTip + cardTip;
 };
 
-export const roundToTwo = (num) => {
-  return +(Math.round(num + 'e+2') + 'e-2');
+export const roundToThree = (num) => {
+  return +(Math.round(num + 'e+3') + 'e-3');
 };
 
 export const calculateKitchenTip = (values) => {
@@ -43,21 +43,39 @@ export const getEmployeesShareMap = (
   staffPrefix,
   totalTip
 ) => {
-  let staffShareSum = 0;
+  let totalHours = 0;
+  let numOfTrainers = 0;
   createArray(numOfStaff).forEach((_, idx) => {
-    staffShareSum =
-      staffShareSum +
-      values[`${staffPrefix}#${idx}Hour`] *
-        values[`${staffPrefix}#${idx}Ratio`];
+    if (values[`${staffPrefix}#${idx}Ratio`] === 1) {
+      numOfTrainers += 1;
+    }
+
+    totalHours = totalHours + Number(values[`${staffPrefix}#${idx}Hour`]);
   });
 
+  // Calculate individual share first
   const map = {};
+  const sharePerHour = totalTip / totalHours;
+  let remainderFromTrainee = 0;
   createArray(numOfStaff).forEach((_, idx) => {
-    map[`${staffPrefix}#${idx}`] =
-      (totalTip *
-        (values[`${staffPrefix}#${idx}Hour`] *
-          values[`${staffPrefix}#${idx}Ratio`])) /
-      staffShareSum;
+    let share = Number(values[`${staffPrefix}#${idx}Hour`]) * sharePerHour;
+
+    if (values[`${staffPrefix}#${idx}Ratio`] < 1) {
+      const remainder = share - share * values[`${staffPrefix}#${idx}Ratio`];
+      remainderFromTrainee = remainderFromTrainee + remainder;
+
+      share = share * values[`${staffPrefix}#${idx}Ratio`];
+    }
+
+    map[`${staffPrefix}#${idx}`] = share;
+  });
+
+  // Add extra tips from trainees to trainers
+  createArray(numOfStaff).forEach((_, idx) => {
+    if (values[`${staffPrefix}#${idx}Ratio`] === 1) {
+      map[`${staffPrefix}#${idx}`] =
+        map[`${staffPrefix}#${idx}`] + remainderFromTrainee / numOfTrainers;
+    }
   });
 
   return map;

@@ -11,12 +11,12 @@ import RFFTextField from 'src/components/RFF/TextField';
 import {
   calculateWaitTip,
   createArray,
-  roundToTwo,
+  roundToThree,
   getEmployeesShareMap,
 } from 'src/utils';
 
 export default function FourthGroupFields({ values }) {
-  const waitTip = roundToTwo(calculateWaitTip(values));
+  const waitTip = roundToThree(calculateWaitTip(values));
   const numOfWaitStaff = Number(values.numOfWaitStaff) || 0;
   const kitchenStaffShareMap = getEmployeesShareMap(
     values,
@@ -89,7 +89,9 @@ export default function FourthGroupFields({ values }) {
       </Typography>
       <Grid container spacing={1}>
         {createArray(numOfWaitStaff).map((_, idx) => {
-          const staffTip = roundToTwo(kitchenStaffShareMap[`waitStaff#${idx}`]);
+          const staffTip = roundToThree(
+            kitchenStaffShareMap[`waitStaff#${idx}`]
+          );
 
           return (
             <Grid item key={idx} xs={6}>
