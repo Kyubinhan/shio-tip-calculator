@@ -43,14 +43,15 @@ export const getEmployeesShareMap = (
   staffPrefix,
   totalTip
 ) => {
+  // Calculate total values
   let totalHours = 0;
-  let numOfTrainers = 0;
+  let numOfTrainerHours = 0;
   createArray(numOfStaff).forEach((_, idx) => {
     if (values[`${staffPrefix}#${idx}Ratio`] === 1) {
-      numOfTrainers += 1;
+      numOfTrainerHours += Number(values[`${staffPrefix}#${idx}Hour`]);
     }
 
-    totalHours = totalHours + Number(values[`${staffPrefix}#${idx}Hour`]);
+    totalHours += Number(values[`${staffPrefix}#${idx}Hour`]);
   });
 
   // Calculate individual share first
@@ -62,7 +63,7 @@ export const getEmployeesShareMap = (
 
     if (values[`${staffPrefix}#${idx}Ratio`] < 1) {
       const remainder = share - share * values[`${staffPrefix}#${idx}Ratio`];
-      remainderFromTrainee = remainderFromTrainee + remainder;
+      remainderFromTrainee += remainder;
 
       share = share * values[`${staffPrefix}#${idx}Ratio`];
     }
@@ -71,10 +72,11 @@ export const getEmployeesShareMap = (
   });
 
   // Add extra tips from trainees to trainers
+  const extraSharePerHour = remainderFromTrainee / numOfTrainerHours;
   createArray(numOfStaff).forEach((_, idx) => {
     if (values[`${staffPrefix}#${idx}Ratio`] === 1) {
-      map[`${staffPrefix}#${idx}`] =
-        map[`${staffPrefix}#${idx}`] + remainderFromTrainee / numOfTrainers;
+      map[`${staffPrefix}#${idx}`] +=
+        Number(values[`${staffPrefix}#${idx}Hour`]) * extraSharePerHour;
     }
   });
 
