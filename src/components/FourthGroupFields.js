@@ -73,6 +73,7 @@ export default function FourthGroupFields({ values }) {
             <Grid item xs={4}>
               <RFFSelect label="Ratio" name={`waitStaff#${idx}Ratio`}>
                 <MenuItem value={1}>100%</MenuItem>
+                <MenuItem value={0.8}>80%</MenuItem>
                 <MenuItem value={0.7}>70%</MenuItem>
                 <MenuItem value={0.5}>50%</MenuItem>
               </RFFSelect>
