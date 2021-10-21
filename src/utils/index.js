@@ -1,6 +1,26 @@
-import { KITCHEN_STAFF_RATIO, WAIT_STAFF_RATIO } from 'src/constants';
+import {
+  AFTERNOON_CLOSING_HOUR,
+  KITCHEN_STAFF_RATIO,
+  WAIT_STAFF_RATIO,
+} from 'src/constants';
 
 export const createArray = (length) => Array.from(Array(length));
+
+export const getIsEveningShift = () => {
+  const today = new Date();
+  const hour = today.getHours();
+
+  return hour > AFTERNOON_CLOSING_HOUR;
+};
+
+export const getYearMonthDay = () => {
+  const today = new Date();
+  const day = today.getDate();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+
+  return `${year}-${month}-${day}`;
+};
 
 export const calculateCash = (values) => {
   const total = Number(values.total) || 0;

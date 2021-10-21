@@ -1,23 +1,23 @@
 import { Grid, TextField, Typography } from '@mui/material';
 
 import RFFTextField from 'src/components/RFF/TextField';
-import { calculateCash, calculateCardTip } from 'src/utils';
-
-const today = new Date();
-const hour = today.getHours();
-const day = today.getDate();
-const month = today.getMonth() + 1;
-const year = today.getFullYear();
+import {
+  calculateCash,
+  calculateCardTip,
+  getIsEveningShift,
+  getYearMonthDay,
+} from 'src/utils';
 
 export default function FirstGroupFields({ values }) {
   const cash = calculateCash(values);
   const cardTip = calculateCardTip(values);
-  const isEvening = hour > 16;
+  const isEveningShift = getIsEveningShift();
+  const yearMonthDay = getYearMonthDay();
 
   return (
     <>
       <Typography variant="h6" component="div" sx={{ marginBottom: 2 }}>
-        {year}-{month}-{day} <b>{isEvening ? 'Evening' : 'Afternoon'}</b> Shift
+        {yearMonthDay} <b>{isEveningShift ? 'Evening' : 'Afternoon'}</b> Shift
       </Typography>
       <Grid container alignItems="flex-start" spacing={2}>
         <Grid item xs={12}>

@@ -5,24 +5,41 @@ import FirstGroupFields from 'src/components/Fields/FirstGroupFields';
 import SecondGroupFields from 'src/components/Fields/SecondGroupFields';
 import ThirdGroupFields from 'src/components/Fields/ThirdGroupFields';
 import FourthGroupFields from 'src/components/Fields/FourthGroupFields';
-import { DEFAULT_PART_TIME_HOUR, DEFAULT_TIP_RATIO } from 'src/constants';
-import { createArray } from 'src/utils';
+import {
+  AFTERNOON_KITCHEN_PART_TIME_HOUR,
+  AFTERNOON_WAIT_PART_TIME_HOUR,
+  DEFAULT_TIP_RATIO,
+  EVENING_KITCHEN_PART_TIME_HOUR,
+  EVENING_WAIT_PART_TIME_HOUR,
+} from 'src/constants';
+import { createArray, getIsEveningShift } from 'src/utils';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-const getInitialValues = (numOfKitchenStaff, numOfWaitStaff) => {
+const getInitialValues = () => {
+  const isEveningShift = getIsEveningShift();
+
   const values = {
-    numOfKitchenStaff,
-    numOfWaitStaff,
+    numOfKitchenStaff: 4,
+    numOfWaitStaff: 2,
   };
 
-  createArray(numOfKitchenStaff).forEach((_, idx) => {
-    values[`kitchenStaff#${idx}Hour`] = DEFAULT_PART_TIME_HOUR;
+  if (isEveningShift) {
+    values['numOfKitchenStaff'] = 6;
+    values['numOfWaitStaff'] = 3;
+  }
+
+  createArray(values.numOfKitchenStaff).forEach((_, idx) => {
+    values[`kitchenStaff#${idx}Hour`] = isEveningShift
+      ? EVENING_KITCHEN_PART_TIME_HOUR
+      : AFTERNOON_KITCHEN_PART_TIME_HOUR;
     values[`kitchenStaff#${idx}Ratio`] = DEFAULT_TIP_RATIO;
   });
 
-  createArray(numOfWaitStaff).forEach((_, idx) => {
-    values[`waitStaff#${idx}Hour`] = DEFAULT_PART_TIME_HOUR;
+  createArray(values.numOfWaitStaff).forEach((_, idx) => {
+    values[`waitStaff#${idx}Hour`] = isEveningShift
+      ? EVENING_WAIT_PART_TIME_HOUR
+      : AFTERNOON_WAIT_PART_TIME_HOUR;
     values[`waitStaff#${idx}Ratio`] = DEFAULT_TIP_RATIO;
   });
 
@@ -32,8 +49,8 @@ const getInitialValues = (numOfKitchenStaff, numOfWaitStaff) => {
 export default function Form() {
   return (
     <RFFForm
-      onSubmit={console.log}
-      initialValues={getInitialValues(6, 4)}
+      onSubmit={() => {}}
+      initialValues={getInitialValues()}
       render={({ values }) => {
         return (
           <form noValidate>
