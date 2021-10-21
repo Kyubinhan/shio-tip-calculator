@@ -1,5 +1,5 @@
 import AppBar from 'src/components/AppBar';
-import Form from 'src/components/RFF/Form';
+import Form from 'src/components/Form';
 
 function App() {
   return (

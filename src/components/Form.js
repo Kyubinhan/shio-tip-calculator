@@ -1,10 +1,10 @@
 import { Paper, Divider } from '@mui/material';
-import { Form } from 'react-final-form';
+import { Form as RFFForm } from 'react-final-form';
 
-import FirstGroupFields from 'src/components/FirstGroupFields';
-import SecondGroupFields from 'src/components/SecondGroupFields';
-import ThirdGroupFields from 'src/components/ThirdGroupFields';
-import FourthGroupFields from 'src/components/FourthGroupFields';
+import FirstGroupFields from 'src/components/Fields/FirstGroupFields';
+import SecondGroupFields from 'src/components/Fields/SecondGroupFields';
+import ThirdGroupFields from 'src/components/Fields/ThirdGroupFields';
+import FourthGroupFields from 'src/components/Fields/FourthGroupFields';
 import { DEFAULT_PART_TIME_HOUR, DEFAULT_TIP_RATIO } from 'src/constants';
 import { createArray } from 'src/utils';
 
@@ -29,9 +29,9 @@ const getInitialValues = (numOfKitchenStaff, numOfWaitStaff) => {
   return values;
 };
 
-export default function RFFForm() {
+export default function Form() {
   return (
-    <Form
+    <RFFForm
       onSubmit={console.log}
       initialValues={getInitialValues(6, 4)}
       render={({ values }) => {
