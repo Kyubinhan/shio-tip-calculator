@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/shio-tip-calculator/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/shio-tip-calculator/static/js/main.070a01df.chunk.js",
-    "main.js.map": "/shio-tip-calculator/static/js/main.070a01df.chunk.js.map",
+    "main.js": "/shio-tip-calculator/static/js/main.39d3a6f8.chunk.js",
+    "main.js.map": "/shio-tip-calculator/static/js/main.39d3a6f8.chunk.js.map",
     "runtime-main.js": "/shio-tip-calculator/static/js/runtime-main.b6e47239.js",
     "runtime-main.js.map": "/shio-tip-calculator/static/js/runtime-main.b6e47239.js.map",
-    "static/js/2.9606faa1.chunk.js": "/shio-tip-calculator/static/js/2.9606faa1.chunk.js",
-    "static/js/2.9606faa1.chunk.js.map": "/shio-tip-calculator/static/js/2.9606faa1.chunk.js.map",
+    "static/js/2.8c4d316e.chunk.js": "/shio-tip-calculator/static/js/2.8c4d316e.chunk.js",
+    "static/js/2.8c4d316e.chunk.js.map": "/shio-tip-calculator/static/js/2.8c4d316e.chunk.js.map",
     "static/js/3.0f808e4f.chunk.js": "/shio-tip-calculator/static/js/3.0f808e4f.chunk.js",
     "static/js/3.0f808e4f.chunk.js.map": "/shio-tip-calculator/static/js/3.0f808e4f.chunk.js.map",
     "index.html": "/shio-tip-calculator/index.html",
     "static/css/main.6dea0f05.chunk.css.map": "/shio-tip-calculator/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.9606faa1.chunk.js.LICENSE.txt": "/shio-tip-calculator/static/js/2.9606faa1.chunk.js.LICENSE.txt"
+    "static/js/2.8c4d316e.chunk.js.LICENSE.txt": "/shio-tip-calculator/static/js/2.8c4d316e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b6e47239.js",
-    "static/js/2.9606faa1.chunk.js",
+    "static/js/2.8c4d316e.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.070a01df.chunk.js"
+    "static/js/main.39d3a6f8.chunk.js"
   ]
 }
