@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://kyubinhan.github.io/shio-tip-calculator",
+  "description": "A simple tips calculator app for Shio restaurant staff",
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
