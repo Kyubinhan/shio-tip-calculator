@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="app">
       <AppBar />
-      <div style={{ padding: 16, margin: 'auto', maxWidth: 600 }}>
+      <div style={{ padding: 16, margin: 'auto', maxWidth: 500 }}>
         <Form />
       </div>
     </div>
